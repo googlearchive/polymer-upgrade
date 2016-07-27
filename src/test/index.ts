@@ -2,6 +2,6 @@
 
 import {upgrade} from '../index';
 
-describe('the upgrade function', function() {
-  it('resolves', function() { return upgrade(''); });
+suite('the upgrade function', function() {
+  test('resolves', function() { return upgrade(''); });
 });
