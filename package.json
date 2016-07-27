@@ -8,10 +8,11 @@
   },
   "main": "lib/index.js",
   "scripts": {
+    "clean": "rm -r lib/",
     "prepublish": "require-self",
-    "build": "tsc",
+    "build": "npm run clean && tsc",
     "test": "npm run build && cd lib/ && mocha",
-    "test:watch": "watchy -w . -i '/\\.|/node_modules|/lib/|.*\\.js$' -- npm test"
+    "test:watch": "watchy -w . -i '/\\.|/node_modules|/lib/.*|.*\\.js$' -- npm test"
   },
   "keywords": [
     "polymer",
