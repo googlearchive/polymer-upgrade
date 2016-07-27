@@ -1,6 +1,6 @@
 {
   "name": "polymer-upgrade",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Automatically upgrade web components",
   "repository": {
     "type": "git",
@@ -21,11 +21,13 @@
   "author": "The Polymer Project Authors",
   "license": "BSD-3-Clause",
   "devDependencies": {
+    "@types/mocha": "^2.2.28",
+    "mocha": "^2.5.3",
     "require-self": "^0.1.0",
     "typescript": "^2.0.0",
     "watchy": "^0.6.6"
   },
   "dependencies": {
-    "@types/mocha": "^2.2.28"
+    "@types/node": "^4.0.30"
   }
 }
