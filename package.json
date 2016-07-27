@@ -9,8 +9,8 @@
   "main": "lib/index.js",
   "scripts": {
     "prepublish": "require-self",
-    "build": "tsc && cd test/ && tsc",
-    "test": "npm run build && mocha",
+    "build": "tsc",
+    "test": "npm run build && cd lib/ && mocha",
     "test:watch": "watchy -w . -i '/\\.|/node_modules|/lib/|.*\\.js$' -- npm test"
   },
   "keywords": [

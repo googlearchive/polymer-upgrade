@@ -1,9 +1,6 @@
-lib/
+# Impotant note: whenever modifying this file, also modify .npmignore
 
 /node_modules
 
-test/*.js
-
-
-# Not sure why compiling the tests is also compiling src/index.js
-src/*.js
+# Don't checkin build artifacts into git
+lib/

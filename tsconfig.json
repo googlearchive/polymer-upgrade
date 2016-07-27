@@ -14,11 +14,16 @@
         "preserveConstEnums": true,
         "suppressImplicitAnyIndexErrors": true,
         "outDir": "./lib",
-        "declaration": true
+        "declaration": true,
+        "lib": [
+            "es2016"
+        ]
     },
     "include": [
         "custom_typings/main.d.ts",
         "src/**/*.ts",
-        "src/*.ts"
+        "src/*.ts",
+        "test/*.ts",
+        "test/**.ts"
     ]
 }
