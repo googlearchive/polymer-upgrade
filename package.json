@@ -1,0 +1,31 @@
+{
+  "name": "polymer-upgrade",
+  "version": "1.0.0",
+  "description": "Automatically upgrade web components",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Polymer/polymer-upgrade.git"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "require-self",
+    "build": "tsc && cd test/ && tsc",
+    "test": "npm run build && mocha",
+    "test:watch": "watchy -w . -i '/\\.|/node_modules|/lib/|.*\\.js$' -- npm test"
+  },
+  "keywords": [
+    "polymer",
+    "web",
+    "components"
+  ],
+  "author": "The Polymer Project Authors",
+  "license": "BSD-3-Clause",
+  "devDependencies": {
+    "require-self": "^0.1.0",
+    "typescript": "^2.0.0",
+    "watchy": "^0.6.6"
+  },
+  "dependencies": {
+    "@types/mocha": "^2.2.28"
+  }
+}
