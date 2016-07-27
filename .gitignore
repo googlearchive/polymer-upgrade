@@ -1,0 +1,9 @@
+lib/
+
+/node_modules
+
+test/*.js
+
+
+# Not sure why compiling the tests is also compiling src/index.js
+src/*.js
