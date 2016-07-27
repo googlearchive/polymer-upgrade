@@ -21,7 +21,6 @@
     },
     "include": [
         "custom_typings/main.d.ts",
-        "src/.ts",
         "src/**/*.ts"
     ]
 }
