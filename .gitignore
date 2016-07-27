@@ -1,0 +1,6 @@
+# Impotant note: whenever modifying this file, also modify .npmignore
+
+/node_modules
+
+# Don't checkin build artifacts into git
+lib/
