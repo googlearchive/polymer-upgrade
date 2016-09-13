@@ -9,7 +9,7 @@
   "main": "lib/index.js",
   "scripts": {
     "clean": "rm -r lib/ 2>/dev/null || echo ''",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && cp -r src/test/fixtures lib/test/fixtures",
     "test": "npm run build && mocha --opts ./mocha.opts ./lib/test",
     "test:watch": "watchy -w src/ -- npm test"
   },
@@ -22,11 +22,15 @@
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@types/mocha": "^2.2.28",
+    "chai": "^3.5.0",
     "mocha": "^2.5.3",
+    "tslint": "^3.15.1",
     "typescript": "^2.0.0",
     "watchy": "^0.6.6"
   },
   "dependencies": {
-    "@types/node": "^4.0.30"
+    "@types/node": "^4.0.30",
+    "cssbeautify": "^0.3.1",
+    "shady-css-parser": "0.0.8"
   }
 }
