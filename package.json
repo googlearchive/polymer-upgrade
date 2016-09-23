@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/Polymer/polymer-upgrade.git"
   },
-  "main": "lib/index.js",
+  "main": "lib/upgrader.js",
   "scripts": {
     "clean": "rm -r lib/ 2>/dev/null || echo ''",
     "build": "npm run clean && tsc && cp -r src/test/fixtures lib/test/fixtures",
