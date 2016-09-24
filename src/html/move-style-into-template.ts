@@ -16,7 +16,7 @@ import * as dom5 from 'dom5';
 import * as parse5 from 'parse5';
 import {ParsedHtmlDocument} from 'polymer-analyzer/lib/html/html-document';
 
-import {UpgradePassRegistry} from '../registry';
+import {registry} from '../registry';
 
 import {HtmlUpgradePass} from './html-pass';
 import {hasExactlyOneChildWithTagName} from './util';
@@ -60,4 +60,4 @@ class MoveStyleIntoTemplate extends HtmlUpgradePass {
   }
 }
 
-UpgradePassRegistry.register(new MoveStyleIntoTemplate());
+registry.register(new MoveStyleIntoTemplate());

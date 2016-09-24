@@ -11,19 +11,37 @@
  * subject to an additional IP rights grant found at
  * http://polymer.github.io/PATENTS.txt
  */
+
 import {ParsedDocument} from 'polymer-analyzer/lib/parser/document';
 
+/**
+ * An upgrade pass. Can take a document and mutate it in order to transform it.
+ */
 export abstract class UpgradePass<T extends ParsedDocument<any, any>> {
   code: string;
-  documentClazz: any;
+
+  /**
+   * The specific kind of ParsedDocument that this pass knows how to upgrade.
+   *
+   * Used by the default implementation of canUpgrade.
+   */
+  protected _documentClazz: any;
 
   constructor() {}
 
-  canUpgrade(document: T) { return document instanceof this.documentClazz; }
+  canUpgrade(document: T) { return document instanceof this._documentClazz; }
 
+  /**
+   * Mutates the given ParsedDocument to apply the upgrade transformation.
+   */
   abstract upgrade(document: T): void;
 }
 
+/**
+ * A named collection of upgrade passes. Useful for giving names to sets of
+ * passes, like passes which upgrade from Polymer v1 to v2, or passes which
+ * are always safe to run and update from old specs to new ones.
+ */
 export class UpgradePassCollection {
   constructor(public code: string, public passes: string[]) {}
 }

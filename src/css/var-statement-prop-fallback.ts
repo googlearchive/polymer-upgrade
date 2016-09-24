@@ -15,7 +15,7 @@
 import {ParsedCssDocument} from 'polymer-analyzer/lib/css/css-document';
 import * as shadyCss from 'shady-css-parser';
 
-import {UpgradePassRegistry} from '../registry';
+import {registry} from '../registry';
 
 import {CssUpgradePass} from './css-pass';
 
@@ -48,5 +48,5 @@ class FixVarStatementWithInvalidCustomPropFallback extends CssUpgradePass {
   }
 }
 
-UpgradePassRegistry.register(
+registry.register(
     new FixVarStatementWithInvalidCustomPropFallback());

@@ -19,6 +19,10 @@ import {ParsedHtmlDocument} from 'polymer-analyzer/lib/html/html-document';
 import {ParsedDocument} from 'polymer-analyzer/lib/parser/document';
 import * as shadyCss from 'shady-css-parser';
 
+/**
+ * Knows how to pretty print any parsed document. We need the original contents
+ * in order to try and preserve the original formatting as much as possible.
+ */
 export function stringify(
     parsed: ParsedDocument<any, any>, originalContents: string) {
   if (parsed instanceof ParsedHtmlDocument) {

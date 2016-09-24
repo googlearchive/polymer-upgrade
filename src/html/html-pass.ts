@@ -17,5 +17,6 @@ import {UpgradePass} from '../upgrade-pass';
 
 export abstract class HtmlUpgradePass extends UpgradePass<ParsedHtmlDocument> {
   constructor() { super(); }
-  documentClazz = ParsedHtmlDocument;
+
+  _documentClazz = ParsedHtmlDocument;
 }

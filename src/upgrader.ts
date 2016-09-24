@@ -20,20 +20,25 @@ import * as clone from 'clone';
 import {Analyzer} from 'polymer-analyzer';
 import {ParsedDocument} from 'polymer-analyzer/lib/parser/document';
 
-import {UpgradePassRegistry} from './registry';
+import {registry} from './registry';
 import {stringify} from './stringify';
 import {UpgradePass} from './upgrade-pass';
 
 export interface Options { upgradePasses: string[]; }
 
+/**
+ * Runs upgrade passes to transform your code.
+ */
 export class Upgrader {
   upgradePasses: UpgradePass<any>[];
 
   constructor(options: Options) {
-    this.upgradePasses =
-        Array.from(new UpgradePassRegistry().getPasses(options.upgradePasses));
+    this.upgradePasses = Array.from(registry.getPasses(options.upgradePasses));
   }
 
+  /**
+   * Upgrades the given file and returns its new contents as a string.
+   */
   async upgrade(rootFile: string, analyzer: Analyzer) {
     const contents = await analyzer.load(rootFile);
     const rootDoc = await analyzer.analyzeRoot(rootFile);

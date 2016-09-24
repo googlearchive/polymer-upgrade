@@ -14,28 +14,26 @@
 
 import {UpgradePass, UpgradePassCollection} from './upgrade-pass';
 
+/**
+ * A singleton class where upgrade passes (and collections thereof) can register
+ * themselves and you can get a collection of passes by querying.
+ */
 export class UpgradePassRegistry {
-  static singleton: UpgradePassRegistry;
   private _all = new Map<string, UpgradePass<any>|UpgradePassCollection>();
-  constructor() {
-    if (!UpgradePassRegistry.singleton) {
-      UpgradePassRegistry.singleton = this;
-    }
 
-    return UpgradePassRegistry.singleton;
+  private constructor() {}
+
+  register(pass: UpgradePass<any>|UpgradePassCollection) {
+    this._all.set(pass.code, pass);
   }
 
-  static register(pass: UpgradePass<any>|UpgradePassCollection) {
-    new UpgradePassRegistry()._all.set(pass.code, pass);
-  }
-
-  static get allPassCodes() {
-    const registry = new UpgradePassRegistry();
-    return Array.from(registry._all.values())
-        .filter(p => p instanceof UpgradePass)
-        .map(p => p.code);
-  }
-
+  /**
+   * Given an array of string codes for registered passes and pass collections,
+   * return the set of passes.
+   *
+   * Treats the code 'all' special and just returns every registered upgrade
+   * pass.
+   */
   getPasses(passCodes: string[]): Set<UpgradePass<any>> {
     const results = new Set<UpgradePass<any>>();
     for (const code of passCodes) {
@@ -61,4 +59,9 @@ export class UpgradePassRegistry {
     }
     return results;
   }
+
+  private static singleton = new UpgradePassRegistry();
+  static get instance() { return UpgradePassRegistry.singleton; }
 }
+
+export const registry = UpgradePassRegistry.instance;

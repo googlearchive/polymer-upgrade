@@ -17,5 +17,6 @@ import {UpgradePass} from '../upgrade-pass';
 
 export abstract class CssUpgradePass extends UpgradePass<ParsedCssDocument> {
   constructor() { super(); }
-  documentClazz = ParsedCssDocument;
+
+  _documentClazz = ParsedCssDocument;
 }
