@@ -1,3 +1,6 @@
+// Upstreamed as https://github.com/DefinitelyTyped/DefinitelyTyped/pull/11460
+// delete this file once that's merged.
+
 declare module 'cssbeautify' {
   interface Options {
     /**
