@@ -18,18 +18,26 @@ import {ParsedDocument} from 'polymer-analyzer/lib/parser/document';
  * An upgrade pass. Can take a document and mutate it in order to transform it.
  */
 export abstract class UpgradePass<T extends ParsedDocument<any, any>> {
-  code: string;
+  /**
+   * A unique identifier for this upgrade pass, like "move-style-into-template".
+   */
+  abstract code: string;
+  /**
+   * A description of the operation of this upgrade pass. Like "Moves style
+   * children of dom-modules into their templates."
+   */
+  abstract description: string;
 
   /**
    * The specific kind of ParsedDocument that this pass knows how to upgrade.
    *
    * Used by the default implementation of canUpgrade.
    */
-  protected _documentClazz: any;
+  protected _documentClass: any;
 
   constructor() {}
 
-  canUpgrade(document: T) { return document instanceof this._documentClazz; }
+  canUpgrade(document: T) { return document instanceof this._documentClass; }
 
   /**
    * Mutates the given ParsedDocument to apply the upgrade transformation.

@@ -15,6 +15,7 @@
 import * as dom5 from 'dom5';
 import * as parse5 from 'parse5';
 import {ParsedHtmlDocument} from 'polymer-analyzer/lib/html/html-document';
+import * as stripIndent from 'strip-indent';
 
 import {registry} from '../registry';
 
@@ -23,26 +24,25 @@ import {hasExactlyOneChildWithTagName} from './util';
 
 const p = dom5.predicates;
 
-/**
- * Transforms:
- *
- *     <dom-module>
- *       <style></style>
- *       <template>foo</template>
- *     <dom-module>
- *
- * Into:
- *
- *     <dom-module>
- *       <template>
- *         <style></style>
- *         foo
- *       </template>
- *     <dom-module>
- */
 class MoveStyleIntoTemplate extends HtmlUpgradePass {
   code = 'style-into-template';
+  description = stripIndent`
+      Transforms:
 
+          <dom-module>
+            <style></style>
+            <template>foo</template>
+          <dom-module>
+
+      Into:
+
+          <dom-module>
+            <template>
+              <style></style>
+              foo
+            </template>
+          <dom-module>
+  `;
   constructor() { super(); }
 
   upgrade(document: ParsedHtmlDocument) {

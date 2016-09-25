@@ -14,22 +14,24 @@
 
 import {ParsedCssDocument} from 'polymer-analyzer/lib/css/css-document';
 import * as shadyCss from 'shady-css-parser';
+import * as stripIndent from 'strip-indent';
 
 import {registry} from '../registry';
 
 import {CssUpgradePass} from './css-pass';
 
-/**
- * Transforms the invalid expression:
- *
- *     var(--foo, --bar)
- *
- * Into:
- *
- *     var(--foo, var(--bar))
- */
+
 class FixVarStatementWithInvalidCustomPropFallback extends CssUpgradePass {
   code = 'var-with-invalid-custom-prop-fallback';
+  description = stripIndent`
+      Transforms the invalid expression:
+      
+          var(--foo, --bar)
+      
+      Into:
+      
+          var(--foo, var(--bar))
+  `;
 
   constructor() { super(); }
 
@@ -48,5 +50,4 @@ class FixVarStatementWithInvalidCustomPropFallback extends CssUpgradePass {
   }
 }
 
-registry.register(
-    new FixVarStatementWithInvalidCustomPropFallback());
+registry.register(new FixVarStatementWithInvalidCustomPropFallback());
