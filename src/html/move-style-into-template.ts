@@ -20,7 +20,7 @@ import * as stripIndent from 'strip-indent';
 import {registry} from '../registry';
 
 import {HtmlUpgradePass} from './html-pass';
-import {hasExactlyOneChildWithTagName} from './util';
+import {checkExactlyOneChildWithTagName} from './util';
 
 const p = dom5.predicates;
 
@@ -52,7 +52,7 @@ class MoveStyleIntoTemplate extends HtmlUpgradePass {
              document.ast, outOfPlaceStyle)) {
       const domModule = outOfPlaceNode.parentNode!;
       const template =
-          hasExactlyOneChildWithTagName(document, domModule, 'template');
+          checkExactlyOneChildWithTagName(document, domModule, 'template');
       dom5.remove(outOfPlaceNode);
       ((template as any).content as parse5.ASTNode)
           .childNodes!.unshift(outOfPlaceNode);

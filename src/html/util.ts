@@ -23,7 +23,7 @@ const p = dom5.predicates;
  * If the parentNode has exactly one child matching the given tagName, then
  * that child is returned. Otherwise we throw a WarningCarryingException.
  */
-export function hasExactlyOneChildWithTagName(
+export function checkExactlyOneChildWithTagName(
     document: ParsedHtmlDocument, parentNode: parse5.ASTNode, tagName: string) {
   const children = parentNode.childNodes!.filter(p.hasTagName(tagName));
   if (children.length === 0) {
