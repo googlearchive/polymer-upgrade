@@ -30,6 +30,41 @@ export class UpgradePassRegistry {
     this._all.set(pass.code, pass);
   }
 
+  private _getPassesForCode(code: string, alreadyExpanded: Set<string>) {
+    alreadyExpanded.add(code);
+    if (code === 'all') {
+      return new Set(
+          Array.from(this._all.values())
+              .filter(p => p instanceof UpgradePass) as UpgradePass<any>[]);
+    }
+
+    const passOrCollection = this._all.get(code);
+    if (passOrCollection == null) {
+      throw new Error(`Could not find upgrade pass with code '${code}'`);
+    }
+
+    if (passOrCollection instanceof UpgradePass) {
+      return new Set([passOrCollection]);
+    }
+
+    return this._getPasses(passOrCollection.passes, alreadyExpanded);
+  }
+
+  private _getPasses(passCodes: string[], alreadyExpanded: Set<string>):
+      Set<UpgradePass<any>> {
+    passCodes = passCodes.filter(p => !alreadyExpanded.has(p));
+
+    const results = new Set<UpgradePass<any>>();
+
+    for (const code of passCodes) {
+      for (const pass of this._getPassesForCode(code, alreadyExpanded)) {
+        results.add(pass);
+      }
+    }
+
+    return results;
+  }
+
   /**
    * Given an array of string codes for registered passes and pass collections,
    * return the set of passes.
@@ -38,29 +73,7 @@ export class UpgradePassRegistry {
    * pass.
    */
   getPasses(passCodes: string[]): Set<UpgradePass<any>> {
-    const results = new Set<UpgradePass<any>>();
-    for (const code of passCodes) {
-      // Special case the code named 'all'
-      if (code === 'all') {
-        for (const pass of this._all.values()) {
-          if (pass instanceof UpgradePass) {
-            results.add(pass);
-          }
-        }
-        continue;
-      }
-      const passOrCollection = this._all.get(code);
-      if (passOrCollection == null) {
-        throw new Error(`Could not find upgrade pass with code '${code}'`);
-      } else if (passOrCollection instanceof UpgradePassCollection) {
-        for (const pass of this.getPasses(passOrCollection.passes)) {
-          results.add(pass);
-        }
-      } else {
-        results.add(passOrCollection);
-      }
-    }
-    return results;
+    return this._getPasses(passCodes, new Set());
   }
 }
 
