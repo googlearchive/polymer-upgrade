@@ -26,7 +26,7 @@ const p = dom5.predicates;
 
 class MoveStyleIntoTemplate extends HtmlUpgradePass {
   code = 'style-into-template';
-  description = stripIndent`
+  description = stripIndent(`
       Transforms:
 
           <dom-module>
@@ -42,7 +42,7 @@ class MoveStyleIntoTemplate extends HtmlUpgradePass {
               foo
             </template>
           <dom-module>
-  `;
+  `);
   constructor() { super(); }
 
   upgrade(document: ParsedHtmlDocument) {

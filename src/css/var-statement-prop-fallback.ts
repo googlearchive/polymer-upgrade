@@ -23,7 +23,7 @@ import {CssUpgradePass} from './css-pass';
 
 class FixVarStatementWithInvalidCustomPropFallback extends CssUpgradePass {
   code = 'var-with-invalid-custom-prop-fallback';
-  description = stripIndent`
+  description = stripIndent(`
       Transforms the invalid expression:
       
           var(--foo, --bar)
@@ -31,7 +31,7 @@ class FixVarStatementWithInvalidCustomPropFallback extends CssUpgradePass {
       Into:
       
           var(--foo, var(--bar))
-  `;
+  `);
 
   constructor() { super(); }
 
