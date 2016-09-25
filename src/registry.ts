@@ -19,6 +19,9 @@ import {UpgradePass, UpgradePassCollection} from './upgrade-pass';
  * themselves and you can get a collection of passes by querying.
  */
 export class UpgradePassRegistry {
+  private static singleton = new UpgradePassRegistry();
+  static get instance() { return UpgradePassRegistry.singleton; }
+
   private _all = new Map<string, UpgradePass<any>|UpgradePassCollection>();
 
   private constructor() {}
@@ -59,9 +62,6 @@ export class UpgradePassRegistry {
     }
     return results;
   }
-
-  private static singleton = new UpgradePassRegistry();
-  static get instance() { return UpgradePassRegistry.singleton; }
 }
 
 export const registry = UpgradePassRegistry.instance;

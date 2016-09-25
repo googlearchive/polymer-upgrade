@@ -29,8 +29,8 @@ export function checkExactlyOneChildWithTagName(
   if (children.length === 0) {
     throw new WarningCarryingException({
       code: 'required-node-missing',
-      message: `Expected ${parentNode.nodeName} node to have a ${tagName
-                                              } child but found none`,
+      message: `Expected ${parentNode.nodeName} node to have a ${tagName}` +
+          ` child but found none`,
       severity: Severity.ERROR,
       sourceRange: document.sourceRangeForNode(parentNode)
     });
@@ -38,9 +38,8 @@ export function checkExactlyOneChildWithTagName(
   if (children.length > 1) {
     throw new WarningCarryingException({
       code: 'extra-unique-nodes',
-      message: `Expected ${parentNode
-                   .nodeName} node to have exactly one ${tagName
-                            } child but found ${children.length}`,
+      message: `Expected ${parentNode.nodeName} node to have exactly one ` +
+          ` ${tagName} child but found ${children.length}`,
       severity: Severity.ERROR,
       sourceRange: document.sourceRangeForNode(children[1])
     });
