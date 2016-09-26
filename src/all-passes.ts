@@ -15,6 +15,7 @@
 // This file imports all passes, causing them to be registered.
 
 import './html/custom-style-no-is';
+import './html/dom-module-name-or-is';
 import './html/move-style-into-template';
 import './css/at-apply-not-function';
 import './css/var-statement-prop-fallback';
