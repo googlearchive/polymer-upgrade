@@ -16,8 +16,9 @@
         "outDir": "./lib",
         "declaration": true,
         "lib": [
-            "es2016"
-        ]
+            "es2017"
+        ],
+        "pretty": true
     },
     "include": [
         "custom_typings/main.d.ts",
