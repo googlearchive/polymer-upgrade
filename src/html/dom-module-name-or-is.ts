@@ -14,7 +14,7 @@
 
 import * as dom5 from 'dom5';
 import {ParsedHtmlDocument} from 'polymer-analyzer/lib/html/html-document';
-import * as stripIndent from 'strip-indent';
+import stripIndent = require('strip-indent');
 
 import {registry} from '../registry';
 

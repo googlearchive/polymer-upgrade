@@ -21,7 +21,6 @@ import {Analyzer} from 'polymer-analyzer';
 import {ParsedDocument} from 'polymer-analyzer/lib/parser/document';
 
 import {registry} from './registry';
-import {stringify} from './stringify';
 import {UpgradePass} from './upgrade-pass';
 
 export interface Options { upgradePasses: string[]; }
@@ -40,12 +39,11 @@ export class Upgrader {
    * Upgrades the given file and returns its new contents as a string.
    */
   async upgrade(rootFile: string, analyzer: Analyzer) {
-    const contents = await analyzer.load(rootFile);
     const rootDoc = await analyzer.analyzeRoot(rootFile);
 
     const parsed = clone(rootDoc.parsedDocument);
     this._upgradeDoc(parsed);
-    return stringify(parsed, contents);
+    return parsed.stringify();
   }
 
   /**

@@ -14,7 +14,7 @@
 
 import {ParsedCssDocument} from 'polymer-analyzer/lib/css/css-document';
 import * as shadyCss from 'shady-css-parser';
-import * as stripIndent from 'strip-indent';
+import stripIndent = require('strip-indent');
 
 import {registry} from '../registry';
 
