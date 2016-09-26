@@ -22,6 +22,11 @@ import * as shadyCss from 'shady-css-parser';
 /**
  * Knows how to pretty print any parsed document. We need the original contents
  * in order to try and preserve the original formatting as much as possible.
+ *
+ * Moving upstream in analyzer, see
+ * https://github.com/Polymer/polymer-analyzer/pull/316
+ *
+ * Delete this file once that's released.
  */
 export function stringify(
     parsed: ParsedDocument<any, any>, originalContents: string) {
