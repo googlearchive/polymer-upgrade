@@ -32,7 +32,7 @@ export function checkExactlyOneChildWithTagName(
       message: `Expected ${parentNode.nodeName} node to have a ${tagName}` +
           ` child but found none`,
       severity: Severity.ERROR,
-      sourceRange: document.sourceRangeForNode(parentNode)
+      sourceRange: document.sourceRangeForNode(parentNode)!
     });
   }
   if (children.length > 1) {
@@ -41,7 +41,7 @@ export function checkExactlyOneChildWithTagName(
       message: `Expected ${parentNode.nodeName} node to have exactly one ` +
           ` ${tagName} child but found ${children.length}`,
       severity: Severity.ERROR,
-      sourceRange: document.sourceRangeForNode(children[1])
+      sourceRange: document.sourceRangeForNode(children[1])!
     });
   }
   return children[0]!;
