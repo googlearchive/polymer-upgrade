@@ -2,5 +2,9 @@ language: node_js
 node_js:
   - "4"
   - "6"
+before_install:
+- npm install -g  yarn
+install:
+- yarn install
 script:
 - npm test
