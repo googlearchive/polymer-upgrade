@@ -39,11 +39,11 @@ export class Upgrader {
    * Upgrades the given file and returns its new contents as a string.
    */
   async upgrade(rootFile: string, analyzer: Analyzer) {
-    const rootDoc = await analyzer.analyzeRoot(rootFile);
+    const rootDoc = await analyzer.analyze(rootFile);
 
     const parsed = clone(rootDoc.parsedDocument);
     this._upgradeDoc(parsed);
-    return parsed.stringify();
+    return parsed.stringify({indent: 0});
   }
 
   /**
