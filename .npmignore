@@ -1,6 +1,0 @@
-# Impotant note: whenever modifying this file, also modify .gitignore
-
-/node_modules
-
-# Don't publish typescript sources to npm
-src/
